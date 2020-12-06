@@ -1,21 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import { search } from '@/services'
-
-// const xmlToDOM = (xml: string) => (new window.DOMParser()).parseFromString(xml, "text/xml")
+import { SearchService } from '@/services'
 
 const Search = (props: any) => {
-    const [state, setState] = useState('')
+    const [result, setResult] = useState('')
     useEffect(() => {
-        search().then(res => res.text())
-        // .then(xmlToDOM)
-        // .then(dom => {
-        //     document.querySelector('#search-container').innerHTML = dom
-        // })
-        .then(xml => {
-            setState(xml)
-        })
+        const { pathname, search } = props.location
+        SearchService(`${pathname}${search}`)
+            .then(res => res.text())
+            .then(html => {
+                setResult(html)
+            })
     }, [])
-    return <div id="search-container" dangerouslySetInnerHTML={{__html: state}}></div>
+    return <div id="search-container" dangerouslySetInnerHTML={{__html: result}}></div>
 }
 
 export default Search

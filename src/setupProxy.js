@@ -6,7 +6,7 @@ module.exports = function (app) {
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-            '^/api': ''
+            '^/api/v4': ''
         },
     }));
 };
