@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Demo from '@/pages/demo/App'
+import Search from '@/pages/search'
 
 const Router = () => {
   return (
@@ -11,6 +12,11 @@ const Router = () => {
             exact
             path="/"
             component={Demo}
+          />
+          <Route
+            exact
+            path="/search"
+            component={Search}
           />
       </Switch>
     </BrowserRouter>
